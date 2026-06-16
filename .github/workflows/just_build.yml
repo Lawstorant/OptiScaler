@@ -1,10 +1,5 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Build
-run-name: Build${{ inputs.debug && ' (debug)' || '' }}${{ !inputs.sign && ' (no signing)' || '' }}
+run-name: Build ${{ github.ref_name }}${{ inputs.debug && ' (debug)' || '' }}${{ !inputs.sign && ' (no signing)' || '' }}
 
 on:
   workflow_dispatch:
