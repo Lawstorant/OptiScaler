@@ -152,8 +152,8 @@ jobs:
         continue-on-error: false
         run: |
           $name = "${{ steps.get_version.outputs.filename }}"
+          7z a -r "${{ github.workspace }}\${name}.7z" *.*
           tar --use-compress-program 'zstd --ultra -T0 -18' -cf "${{ github.workspace }}\$name$Env:TAR_EXTENSION" *.*
-          tar --use-compress-program 'zstd --ultra -T0 -19' -cf "${{ github.workspace }}\${name}2$Env:TAR_EXTENSION" *.*
 
       - name: Upload standalone .dll file
         uses: actions/upload-artifact@v7
@@ -168,7 +168,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.get_version.outputs.filename }}
-          path: ${{ steps.get_version.outputs.filename }}2${{ env.TAR_EXTENSION }}
+          path: ${{ steps.get_version.outputs.filename }}.7z
           compression-level: 0
           archive: false
           if-no-files-found: error
