@@ -4,6 +4,7 @@
 # documentation.
 
 name: Build
+run-name: Build${{ inputs.debug && ' (debug)' || '' }}${{ !inputs.sign && ' (no signing)' || '' }}
 
 on:
   workflow_dispatch:
@@ -48,6 +49,7 @@ permissions:
 
 jobs:
   build:
+    name: Build${{ inputs.debug && ' debug' || '' }}${{ !inputs.sign && ' without signing' || '' }}
     runs-on: windows-latest
     environment: Build
 
