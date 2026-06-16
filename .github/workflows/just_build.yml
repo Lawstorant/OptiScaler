@@ -155,7 +155,7 @@ jobs:
         run: |
           $name = "${{ steps.get_version.outputs.filename }}"
           7z a -r "${{ github.workspace }}\${name}.7z" *.*
-          tar -I 'zstd --ultra' -cf "${{ github.workspace }}\$name$Env:TAR_EXTENSION" *.*
+          tar --use-compress-program 'zstd --ultra' -cf "${{ github.workspace }}\$name$Env:TAR_EXTENSION" *.*
 
       - name: Upload standalone .dll file
         uses: actions/upload-artifact@v7
